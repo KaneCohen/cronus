@@ -1,0 +1,4 @@
+charon
+======
+
+Javascript Date module.
