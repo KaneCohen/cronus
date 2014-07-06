@@ -84,6 +84,33 @@ define(['charon'], function(charon) {
 			equal(c.startOf('day').timestamp(), d.getTime());
 		});
 
+		test("fromNow method", 8, function() {
+			var now = new charon(new Date);
+			equal(now.fromNow(), 'just now');
+
+			var fiveMinAgo = new charon(new Date().getTime() - (5 * 60 * 1000));
+			equal(fiveMinAgo.fromNow(), '5 minutes ago');
+
+			var fourtyFourMinAgo = new charon(new Date().getTime() - (44 * 60 * 1000));
+			equal(fourtyFourMinAgo.fromNow(), '44 minutes ago');
+
+			var fourtyFiveMinAgo = new charon(new Date().getTime() - (45 * 60 * 1000));
+			equal(fourtyFiveMinAgo.fromNow(), 'an hour ago');
+
+			var twentyHoursAgo = new charon(new Date().getTime() - (20 * 60 * 60 * 1000));
+			equal(twentyHoursAgo.fromNow(), '20 hours ago');
+
+			var twentyFourHoursAgo = new charon(new Date().getTime() - (24 * 60 * 60 * 1000));
+			equal(twentyFourHoursAgo.fromNow(), 'a day ago');
+
+			var twentyNineDaysAgo = new charon(new Date().getTime() - (29 * 24 * 60 * 60 * 1000));
+			equal(twentyNineDaysAgo.fromNow(), '29 days ago');
+
+			var thirtyOneDaysAgo = new charon(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
+			var date = thirtyOneDaysAgo.format('{D} {MMMM}');
+			equal(thirtyOneDaysAgo.fromNow(), date);
+		});
+
 	};
 
 	return {run: run};

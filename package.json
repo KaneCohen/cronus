@@ -1,0 +1,20 @@
+{
+  "name": "charon",
+  "version": "0.1.1",
+	"author": {
+		"name": "Kane Cohen",
+		"email": "kanecohen@gmail.com"
+	},
+  "description": "Simple javascript Date manipulation, parsing and printing library.",
+	"keywords": ["date", "parsing"],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KaneCohen/charon.git"
+  },
+	"licenses": [
+		{
+			"type": "BSD",
+			"url": "https://github.com/KaneCohen/charon/master/LICENSE"
+		}
+	]
+}
