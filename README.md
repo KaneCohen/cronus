@@ -34,7 +34,6 @@ defind('app', ['charon'], function(charon) {
 	dateP.tomorrow();
 
 });
-
 ````
 
 Format
@@ -52,7 +51,6 @@ date.format();
 
 // Or you can specify your own format. Will return '2014-03-12'.
 date.format('{YYYY}-{MM}-{DD}');
-
 ````
 
 List if special symbols convertable with format:
@@ -119,7 +117,4 @@ var date = charon.utc('2014-05-13 12:05:45');
 
 // To convert current UTC date to the current local time use `local`
 date.local();
-
-
-
 ````
