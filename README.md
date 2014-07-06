@@ -56,11 +56,11 @@ date.format('{YYYY}-{MM}-{DD}');
 ````
 
 List if special symbols convertable with format:
-* `S` milliseconds - 123
-* `SS` milliseconds with leading zeroes - 008
+* `S` milliseconds
+* `SS` milliseconds with leading zeroes
 * `s` seconds
 * `ss` seconds with leading zero
-* `m`  minutes,
+* `m`  minutes
 * `mm` minutes with leading zero
 * `H` hours in AM/PM format
 * `HH` hours in AM/PM format with leading zero
