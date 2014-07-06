@@ -56,45 +56,45 @@ date.format('{YYYY}-{MM}-{DD}');
 ````
 
 List if special symbols convertable with format:
-* S  // milliseconds - 123
-* SS // milliseconds with leading zeroes - 008
-* s  // seconds
-* ss // seconds with leading zero
-* m  // minutes,
-* mm // minutes with leading zero
-* H  // hours in AM/PM format
-* HH // hours in AM/PM format with leading zero
-* h  // hours in 00-23 format
-* hh // hours in 00-23 format with leading zero
-* a  // lower case form of meridiem (AM/PM)
-* A  // meridiem in upper case format
-* D    // day of month
-* DD   // day of month with leading zero
-* DDD  // day of year,
-* DDDD // day of year with leading zero
-* M    // month - number starting from 1 to 12
-* MM   // month number with leading zero 01 to 12
-* MMM  // short name of the month
-* MMMM // long name of the month
-* w    // day of week
-* ww   // day of week with leading zero
-* www:  // short name of the weekday
-* wwww: // long name of the weekday
-* W:    // week number in the year from 1 to 52 with locale dependancy
-* WW    // week number in the year from 01 to 52
-* WWW   // week number in the year from 1 to 52 without locate dependency
-* WWWW  // week number in the year with leading zero from 01 to 52 without locate dependency
-* Y     // short form of the year - 1995 = 95, 2014 = 14
-* YY    // same as above
-* YYYY  // full year
-* Z     // timezone in a format +01:00 or -08:00
-* ZZ    // timezone in a format +0100 -0800
+* `S` milliseconds - 123
+* `SS` milliseconds with leading zeroes - 008
+* `s` seconds
+* `ss` seconds with leading zero
+* `m`  minutes,
+* `mm` minutes with leading zero
+* `H` hours in AM/PM format
+* `HH` hours in AM/PM format with leading zero
+* `h` hours in 00-23 format
+* `hh` hours in 00-23 format with leading zero
+* `a` lower case form of meridiem (AM/PM)
+* `A` meridiem in upper case format
+* `D` day of month
+* `DD` day of month with leading zero
+* `DDD` day of year,
+* `DDDD` day of year with leading zero
+* `M` month - number starting from 1 to 12
+* `MM` month number with leading zero 01 to 12
+* `MMM` short name of the month
+* `MMMM` long name of the month
+* `w` day of week
+* `ww` day of week with leading zero
+* `www` short name of the weekday
+* `wwww` long name of the weekday
+* `W week number in the year from 1 to 52 with locale dependancy
+* `WW` week number in the year from 01 to 52
+* `WWW` week number in the year from 1 to 52 without locate dependency
+* `WWWW` week number in the year with leading zero from 01 to 52 without locate dependency
+* `Y` short form of the year - 1995 = 95, 2014 = 14
+* `YY` same as above
+* `YYYY` full year
+* `Z` timezone in a format +01:00 or -08:00
+* `ZZ` timezone in a format +0100 -0800
 
 Using list of symbols above, create formats like:
 
-`{D} of {MMMM}, {YYYY}`
-`{DD} {MMMM}, {YYYY} - {HH}:{mm}`
-`{DD} {MMMM}, {YYYY} - {HH}:{mm} {Z}`
+`{D} of {MMMM}, {YYYY}`  
+`{DD} {MMMM}, {YYYY} - {HH}:{mm}`  
+`{DD} {MMMM}, {YYYY} - {HH}:{mm} {Z}`  
 
 Default ISO-8601 format for dates looks like that:
 `{YYYY}-{MM}-{DD}T{hh}:{mm}:{ss}{Z}`
