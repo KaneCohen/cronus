@@ -111,6 +111,21 @@ define(['charon'], function(charon) {
 			equal(thirtyOneDaysAgo.fromNow(), date);
 		});
 
+		test("test day methods", 3, function() {
+			var yesterday = new Date('2014-07-03 00:00:00');
+			var tomorrow = new Date('2014-07-05 00:00:00');
+
+			var c = new charon('2014-07-04 12:05:45');
+			equal(c.yesterday().timestamp(), yesterday.getTime());
+
+			var c2 = new charon('2014-07-04 12:05:45');
+			equal(c2.tomorrow().timestamp(), tomorrow.getTime());
+
+			var c3 = new charon('2014-07-04 12:05:45');
+			yesterday = new Date('2014-07-03 12:05:45');
+			equal(c3.sub(1, 'day').timestamp(), yesterday.getTime());
+		});
+
 	};
 
 	return {run: run};
