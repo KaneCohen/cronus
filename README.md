@@ -80,7 +80,7 @@ List if special symbols convertable with format:
 * `ww` day of week with leading zero
 * `www` short name of the weekday
 * `wwww` long name of the weekday
-* `W week number in the year from 1 to 52 with locale dependancy
+* `W` week number in the year from 1 to 52 with locale dependancy
 * `WW` week number in the year from 01 to 52
 * `WWW` week number in the year from 1 to 52 without locate dependency
 * `WWWW` week number in the year with leading zero from 01 to 52 without locate dependency
