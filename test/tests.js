@@ -16,7 +16,6 @@ define(['charon'], function(charon) {
 
 		test("instantiation", 9, function() {
 			var c = new charon(d);
-			console.log(c.format());
 
 			ok(c instanceof charon);
 			ok(c.toDate() instanceof Date);
@@ -42,7 +41,7 @@ define(['charon'], function(charon) {
 			equal(c.unix(), Math.floor(d.getTime()/1000));
 		});
 
-		test("date parsing", 6, function() {
+		test("date parsing", 7, function() {
 			var c;
 
 			// Simple date parseing. Will set inner date to 00:00:00 local.
@@ -52,6 +51,11 @@ define(['charon'], function(charon) {
 			// Normal parsing with local timezone.
 			// Compare unix timestamp, but with compensation for local offset.
 			c = new charon('1991-08-25 20:57:08');
+			equal(c.unix() - msOff, 683153828);
+
+			// Format parsing with local timezone.
+			// Compare unix timestamp, but with compensation for local offset.
+			c = new charon('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
 			equal(c.unix() - msOff, 683153828);
 
 			// Symbol T indicates that we are setting at UTC timezone.
