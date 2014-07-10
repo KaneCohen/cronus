@@ -115,7 +115,7 @@ define(['charon'], function(charon) {
 			equal(thirtyOneDaysAgo.fromNow(), date);
 		});
 
-		test("test day methods", 3, function() {
+		test("test day methods", 4, function() {
 			var yesterday = new Date('2014-07-03 00:00:00');
 			var tomorrow = new Date('2014-07-05 00:00:00');
 
@@ -128,6 +128,136 @@ define(['charon'], function(charon) {
 			var c3 = new charon('2014-07-04 12:05:45');
 			yesterday = new Date('2014-07-03 12:05:45');
 			equal(c3.sub(1, 'day').timestamp(), yesterday.getTime());
+
+			var c4 = new charon('2014-07-04 12:05:45');
+			in10Days = new Date('2014-07-14 12:05:45');
+			equal(c4.add(10, 'days').timestamp(), in10Days.getTime());
+		});
+
+		test("getters and setters", 6, function() {
+			var c = new charon();
+
+			c.year(2014);
+			c.month(10);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.year(), 2014);
+			equal(c.month(), 10);
+			equal(c.date(), 11);
+			equal(c.minutes(), 17);
+			equal(c.seconds(), 43);
+			equal(c.milliseconds(), 11);
+		});
+
+		test("add with short", 6, function() {
+			var c = new charon();
+
+			c.year(2014);
+			c.month(10);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.add(1, 'y').year(), 2015);
+			equal(c.add(1, 'M').month(), 11);
+			equal(c.add(2, 'd').date(), 13);
+			equal(c.add(5, 'm').minutes(), 22);
+			equal(c.add(10, 's').seconds(), 53);
+			equal(c.add(100, 'ms').milliseconds(), 111);
+		});
+
+		test("add with long singular", 6, function() {
+			var c = new charon();
+
+			c.year(2014);
+			c.month(10);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.add(1, 'year').year(), 2015);
+			equal(c.add(1, 'month').month(), 11);
+			equal(c.add(2, 'day').date(), 13);
+			equal(c.add(5, 'minute').minutes(), 22);
+			equal(c.add(10, 'second').seconds(), 53);
+			equal(c.add(100, 'millisecond').milliseconds(), 111);
+		});
+
+		test("add with long plural", 6, function() {
+			var c = new charon();
+
+			c.year(2014);
+			c.month(10);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.add(1, 'years').year(), 2015);
+			equal(c.add(1, 'months').month(), 11);
+			equal(c.add(2, 'days').date(), 13);
+			equal(c.add(5, 'minutes').minutes(), 22);
+			equal(c.add(10, 'seconds').seconds(), 53);
+			equal(c.add(100, 'milliseconds').milliseconds(), 111);
+		});
+
+		test("subtract with short", 6, function() {
+			var c = new charon();
+
+			c.year(2011);
+			c.month(6);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.sub(1, 'y').year(), 2010);
+			equal(c.sub(1, 'M').month(), 5);
+			equal(c.sub(2, 'd').date(), 9);
+			equal(c.sub(5, 'm').minutes(), 12);
+			equal(c.sub(10, 's').seconds(), 33);
+			equal(c.sub(5, 'ms').milliseconds(), 6);
+		});
+
+		test("subtract with long singular", 6, function() {
+			var c = new charon();
+
+			c.year(2011);
+			c.month(6);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.sub(1, 'year').year(), 2010);
+			equal(c.sub(1, 'month').month(), 5);
+			equal(c.sub(2, 'day').date(), 9);
+			equal(c.sub(5, 'minute').minutes(), 12);
+			equal(c.sub(10, 'second').seconds(), 33);
+			equal(c.sub(5, 'millisecond').milliseconds(), 6);
+		});
+
+		test("subtract with long plural", 6, function() {
+			var c = new charon();
+
+			c.year(2011);
+			c.month(6);
+			c.date(11);
+			c.minutes(17);
+			c.seconds(43);
+			c.milliseconds(11);
+
+			equal(c.sub(1, 'years').year(), 2010);
+			equal(c.sub(1, 'months').month(), 5);
+			equal(c.sub(2, 'days').date(), 9);
+			equal(c.sub(5, 'minutes').minutes(), 12);
+			equal(c.sub(10, 'seconds').seconds(), 33);
+			equal(c.sub(5, 'milliseconds').milliseconds(), 6);
 		});
 
 	};
