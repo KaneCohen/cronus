@@ -16,5 +16,10 @@
 			"type": "BSD",
 			"url": "https://github.com/KaneCohen/charon/master/LICENSE"
 		}
-	]
+	],
+	"devDependencies": {
+		"uglify-js": "latest",
+		"grunt": "latest",
+		"grunt-contrib-uglify": "latest"
+	}
 }

@@ -1,6 +1,6 @@
 require.config({
 	paths: {
-		charon: '../lib/charon.min',
+		charon: '../lib/charon',
 		qunit: 'vendor/qunit'
 	},
 	shim: {

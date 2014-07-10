@@ -3,7 +3,7 @@ Charon
 
 Javascript Date manipulation and parsing module.
 
-Simplistic, tiny (3.9KB gzip) and rather fast library inspired by moment.js and Carbon.
+Simplistic, tiny (~5KB gzip) and rather fast library inspired by moment.js and Carbon.
 Can be used both as a node.js module and require.js module.
 
 How to use
