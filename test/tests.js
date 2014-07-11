@@ -1,4 +1,4 @@
-define(['charon'], function(charon) {
+define(['charon', 'lang'], function(charon, ru) {
 	var run = function() {
 
 		var d;
@@ -10,6 +10,7 @@ define(['charon'], function(charon) {
 
 			setup: function() {
 				d = new Date();
+				charon.lang('en');
 			}
 
 		});
@@ -32,6 +33,13 @@ define(['charon'], function(charon) {
 			var x = new charon('1991-08-25');
 			var y = new charon();
 			notEqual(x.unix(), y.unix());
+		});
+
+		test("language", 2, function() {
+			charon.lang('ru');
+			var c = new charon();
+			equal(c._lang, 'ru');
+			equal(c.lang().relativeTime.prefixFromNow, 'через');
 		});
 
 		test("timestamps", 2, function() {

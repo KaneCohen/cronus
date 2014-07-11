@@ -94,7 +94,7 @@ Using list of symbols above, create formats like:
 Default ISO-8601 format for dates looks like that:
 `{YYYY}-{MM}-{DD}T{hh}:{mm}:{ss}{Z}`
 
-Formatting symols should always be wrapped in {}. Anything outside will be
+Formatting symols should always be wrapped in `{}`. Anything outside will be
 treated as normal text and won't be formatted.
 
 UTC Mode
@@ -116,4 +116,58 @@ var date = charon.utc('2014-05-13 12:05:45');
 
 // To convert current UTC date to the current local time use `local`
 date.local();
+````
+
+Diff
+======
+
+You can calculate difference between two dates in various units.
+
+````js
+var date1 = new charon();
+var date2 = new charon().sub(5, 'days');
+
+// Will return difference in milliseconds.
+var diff = date1.diff(date2);
+
+// Get difference in seconds.
+var diffS = date1.diff(date2, 'seconds'); // Yuo can also use unit aliases such as 's' or 'second'
+
+// Get difference in hours.
+var diffH = date1.diff(date2, 'hours'); // Yuo can also use unit aliases such as 'h' or 'hour'
+````
+
+Besides getting difference in one unit type only, you can ask charon to return
+an object containing all differences.
+
+````js
+var date1 = new charon();
+var date2 = new charon().sub(5, 'days');
+
+var diff = date1.diff(date2, 'all');
+// That will return following object:
+/**
+	{
+		// Object with rounded absolutely formatted numbers.
+		relative: {
+			S: 432000000, // Milliseconds
+			s: 432000,    // Seconds
+			m: 7200,      // Minutes
+			h: 120,       // Hours
+			d: 5,         // days
+			M: 0,         // Months
+			y: 0          // Years
+		},
+		// Strict difference be it posizive or negative numbers.
+		strict: {
+			S: 432000000,
+			s: 432000,
+			m: 7200,
+			h: 120,
+			d: 5,
+			M: 0.16666...,
+			y: 0.01369...
+		}
+	}
+*/
 ````

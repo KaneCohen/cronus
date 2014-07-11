@@ -1,7 +1,9 @@
 var charon = require('../../lib/charon.js');
+var lang = require('../../lang/ru.js');
 
 exports.charon = {
 	setUp: function(done) {
+		charon.lang('en');
 		var off = new Date().getTimezoneOffset();
 		this.msOff = off*60;
 
@@ -28,6 +30,17 @@ exports.charon = {
 		var x = new charon('1991-08-25');
 		var y = new charon();
 		test.notEqual(x.unix(), y.unix(), 'two instance results should not be equal');
+
+		test.done();
+	},
+
+	"language": function(test) {
+		test.expect(2);
+		charon.lang('ru');
+
+		var c = new charon();
+		test.equal(c._lang, 'ru', 'Language should be set to russian')
+		test.equal(c.lang().relativeTime.prefixFromNow, 'через', 'Language line should be set to translated one');
 
 		test.done();
 	},

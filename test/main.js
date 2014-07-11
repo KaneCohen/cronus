@@ -1,5 +1,6 @@
 require.config({
 	paths: {
+		lang: '../lang/ru',
 		charon: '../lib/charon',
 		qunit: 'vendor/qunit'
 	},
