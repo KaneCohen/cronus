@@ -19,7 +19,12 @@
 	],
 	"devDependencies": {
 		"uglify-js": "latest",
+		"nodeunit": "latest",
 		"grunt": "latest",
+		"grunt-contrib-nodeunit": "latest",
 		"grunt-contrib-uglify": "latest"
+	},
+	"scripts": {
+		"test": "grunt test:node"
 	}
 }

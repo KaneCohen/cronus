@@ -18,10 +18,17 @@ module.exports = function(grunt) {
 					preserveComments: 'some'
 				}
 			}
+		},
+		nodeunit: {
+			all: ['test/charon/**/*.js']
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-	grunt.registerTask('default', ['uglify']);
+	grunt.registerTask('test', ['test:node']);
+	grunt.registerTask('test:node', ['nodeunit']);
+	grunt.registerTask('compact', ['uglify']);
+	grunt.registerTask('release', ['nodeunit', 'uglify']);
 };
