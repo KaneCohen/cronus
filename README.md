@@ -32,7 +32,6 @@ defind('app', ['charon'], function(charon) {
 	// Set date to tomorrow - time will be set to the beginning of the day:
 	// turning it into '2014-05-12 00:00:00'.
 	dateP.tomorrow();
-
 });
 ````
 
@@ -51,7 +50,7 @@ date.format(); // Will return date in an ISO format: '2014-03-12T15:12:22-08:00'
 date.format('{YYYY}-{MM}-{DD}'); // Specify your own format. Will return '2014-03-12'.
 ````
 
-List if special symbols convertable with format:
+List of special symbols convertable with format:
 * `S` milliseconds
 * `SS` milliseconds with leading zeroes
 * `s` seconds
@@ -94,6 +93,9 @@ Using list of symbols above, create formats like:
 
 Default ISO-8601 format for dates looks like that:
 `{YYYY}-{MM}-{DD}T{hh}:{mm}:{ss}{Z}`
+
+Formatting symols should always be wrapped in {}. Anything outside will be
+treated as normal text and won't be formatted.
 
 UTC Mode
 ======
