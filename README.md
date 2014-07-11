@@ -3,7 +3,7 @@ Charon
 
 Javascript Date manipulation and parsing module.
 
-Simplistic, tiny (~5KB gzip) and rather fast library inspired by moment.js and Carbon.
+Simplistic, tiny (~5KB gzip) and rather fast library inspired by moment.js and Carbon (PHP).
 Can be used both as a node.js module and require.js module.
 
 How to use
@@ -46,11 +46,9 @@ date in an ISO format or you can specify your own format.
 ````js
 
 var date = new charon();
-// Will return date in an ISO format: '2014-03-12T15:12:22-08:00'.
-date.format();
+date.format(); // Will return date in an ISO format: '2014-03-12T15:12:22-08:00'.
 
-// Or you can specify your own format. Will return '2014-03-12'.
-date.format('{YYYY}-{MM}-{DD}');
+date.format('{YYYY}-{MM}-{DD}'); // Specify your own format. Will return '2014-03-12'.
 ````
 
 List if special symbols convertable with format:
@@ -107,7 +105,6 @@ to show UTC time without any timezone modifications.
 Usually, UTC mode is used whenever you need to return correct datestring with `format`
 
 ````js
-
 // Turn new instance into UTC date.
 var date = new charon().utc();
 // OR

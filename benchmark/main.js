@@ -43,7 +43,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			console.log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is' + this.filter('fastest').pluck('name'));
+			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
@@ -62,11 +62,12 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			console.log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is' + this.filter('fastest').pluck('name'));
+			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
 	});
+
 
 	tests.push(function(next) {
 		var suite = new Benchmark.Suite;
@@ -80,11 +81,12 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			console.log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is' + this.filter('fastest').pluck('name'));
+			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
 	});
+
 
 	tests.push(function(next) {
 		var suite = new Benchmark.Suite;
@@ -98,12 +100,12 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			console.log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is' + this.filter('fastest').pluck('name'));
-			console.log('-----');
+			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
 	});
+
 
 	tests.push(function(next) {
 		var suite = new Benchmark.Suite;
@@ -117,7 +119,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			console.log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is' + this.filter('fastest').pluck('name'));
+			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
