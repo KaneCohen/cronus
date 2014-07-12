@@ -13,12 +13,18 @@ require.config({
 
 require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
+	function log(message) {
+		var el = document.createElement('div');
+		el.innerHTML = message;
+		document.body.appendChild(el);
+	}
+
 	function runTests(tests, k) {
 		k || (k = 0);
 		if (tests[k]) {
 			runTest(tests[k], function() {
 				if (k < tests.length) {
-					console.log('');
+					log('------');
 					runTests(tests, k+1);
 				}
 			});
@@ -40,10 +46,10 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			var d = new moment().format('YYYY-MM-DD');
 		})
 		.on('cycle', function(e) {
-			console.log(String(e.target));
+			log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+			log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
@@ -59,10 +65,10 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			var d = new moment('1991-08-25');
 		})
 		.on('cycle', function(e) {
-			console.log(String(e.target));
+			log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+			log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
@@ -78,10 +84,10 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			var d = new moment('1991-08-25 12:02:04');
 		})
 		.on('cycle', function(e) {
-			console.log(String(e.target));
+			log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+			log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
@@ -97,10 +103,10 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			var d = new moment('1991-08-25 12:02:04+01:00');
 		})
 		.on('cycle', function(e) {
-			console.log(String(e.target));
+			log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+			log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
@@ -116,10 +122,10 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 			var d = new moment('1991-08-25 12:02:04+01:00').add(5, 'days');
 		})
 		.on('cycle', function(e) {
-			console.log(String(e.target));
+			log(String(e.target));
 		})
 		.on('complete', function() {
-			console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+			log('Fastest is ' + this.filter('fastest').pluck('name'));
 			next();
 		})
 		.run({'async': true});
