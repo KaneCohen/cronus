@@ -18,6 +18,8 @@ define(['charon', 'lang'], function(charon, ru) {
 		test("instantiation", 9, function() {
 			var c = new charon(d);
 
+			var cc = new charon();
+
 			ok(c instanceof charon);
 			ok(c.toDate() instanceof Date);
 
@@ -66,7 +68,6 @@ define(['charon', 'lang'], function(charon, ru) {
 			c = new charon('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
 			equal(c.unix() - msOff, 683153828);
 
-			// Symbol T indicates that we are setting at UTC timezone.
 			c = new charon('1991-08-25T20:57:08');
 			equal(c.unix() - msOff, 683153828);
 
