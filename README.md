@@ -10,7 +10,7 @@ How to use
 ======
 
 ````js
-defind('app', ['charon'], function(charon) {
+define('app', ['charon'], function(charon) {
 
 	// Creates new instance of charon with date set to crrent moment.
 	var date = new charon();
