@@ -27,7 +27,7 @@ define('app', ['charon'], function(charon) {
 	// OR
 	// dateP.sub(2, 'days');
 	// OR
-	// dateP.sub(2, 'days');
+	// dateP.sub(2, 'd');
 
 	// Set date to tomorrow - time will be set to the beginning of the day:
 	// turning it into '2014-05-12 00:00:00'.

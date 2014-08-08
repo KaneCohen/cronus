@@ -22,7 +22,9 @@
 		"nodeunit": "latest",
 		"grunt": "latest",
 		"grunt-contrib-nodeunit": "latest",
-		"grunt-contrib-uglify": "latest"
+		"grunt-contrib-uglify": "latest",
+		"grunt-contrib-jshint": "latest",
+		"grunt-contrib-watch": "latest"
 	},
 	"scripts": {
 		"test": "grunt test:node"
