@@ -37,6 +37,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
 	var tests = [];
 
+	var d = new charon().format('{YYYY}-{MM}-{DD}');
 	tests.push(function(next) {
 		var suite = new Benchmark.Suite;
 		suite.add('Charon#format', function() {
