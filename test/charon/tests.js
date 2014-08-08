@@ -11,9 +11,9 @@ exports.charon = {
 	},
 
 	"instantiation": function(test) {
-		test.expect(9);
+		test.expect(10);
 
-		var c = new charon;
+		var c = new charon();
 
 		test.ok(c instanceof charon, 'instance should be charon');
 		test.ok(c.toDate() instanceof Date, 'toDate method return should be instance of Date');
@@ -31,6 +31,9 @@ exports.charon = {
 		var y = new charon();
 		test.notEqual(x.unix(), y.unix(), 'two instance results should not be equal');
 
+		c = new charon([1991, 7, 25]);
+		test.equal(c.unix() - this.msOff, 683078400, 'should return correct date when setting it via array');
+
 		test.done();
 	},
 
@@ -39,7 +42,7 @@ exports.charon = {
 		charon.lang('ru');
 
 		var c = new charon();
-		test.equal(c._lang, 'ru', 'Language should be set to russian')
+		test.equal(c._lang, 'ru', 'Language should be set to russian');
 		test.equal(c.lang().relativeTime.prefixFromNow, 'через', 'Language line should be set to translated one');
 
 		test.done();
@@ -48,7 +51,7 @@ exports.charon = {
 	"timestamps": function(test) {
 		test.expect(2);
 
-		var d = new Date;
+		var d = new Date();
 		var c = new charon(d);
 
 		test.equal(c.timestamp(), d.getTime(), 'Get Date timestamp (in milliseconds)');
@@ -60,7 +63,7 @@ exports.charon = {
 	"date parsing": function(test) {
 		test.expect(7);
 
-		// Simple date parseing. Will set inner date to 00:00:00 local.
+		// Simple date parsing. Will set inner date to 00:00:00 local.
 		var c = new charon('1991-08-25');
 		test.equal(c.unix() - this.msOff, 683078400, 'Set date with simple Y-M-D string');
 
@@ -93,9 +96,9 @@ exports.charon = {
 	},
 
 	"startOf method": function(test) {
-		test.expect(4);
+		test.expect(5);
 
-		var d = new Date;
+		var d = new Date();
 		var c = new charon(d);
 		d.setMilliseconds(0);
 		test.equal(c.startOf('second').timestamp(), d.getTime(), 'Set to start of second');
@@ -106,13 +109,17 @@ exports.charon = {
 		d.setHours(0);
 		test.equal(c.startOf('day').timestamp(), d.getTime(), 'Set to start of day');
 
+		var dw = new Date(1991, 7, 25);
+		var cw = new charon([1991, 7, 27]);
+		test.equal(cw.startOf('week').timestamp(), dw.getTime(), 'should be correct when setting start of week');
+
 		test.done();
 	},
 
 	"fromNow method": function(test) {
 		test.expect(8);
 
-		var now = new charon(new Date);
+		var now = new charon(new Date());
 		test.equal(now.fromNow(), 'just now', 'From now to now');
 
 		var fiveMinAgo = new charon(new Date().getTime() - (5 * 60 * 1000));
@@ -187,7 +194,7 @@ exports.charon = {
 	"add with short": function(test) {
 		test.expect(6);
 
-		var c = new charon;
+		var c = new charon();
 		c.year(2014);
 		c.month(10);
 		c.date(11);
