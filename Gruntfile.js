@@ -23,7 +23,11 @@ module.exports = function(grunt) {
 			all: ['test/charon/**/*.js']
 		},
 		jshint: {
-			files: ['lib/charon.js']
+			files: ['lib/charon.js'],
+			options: {
+				undef: true,
+				unused: true
+			}
 		},
 		watch: {
 			files: ['<%= jshint.files %>'],
