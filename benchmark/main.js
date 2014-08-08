@@ -37,9 +37,8 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
 	var tests = [];
 
-	var d = new charon().format('{YYYY}-{MM}-{DD}');
 	tests.push(function(next) {
-		var suite = new Benchmark.Suite;
+		var suite = new Benchmark.Suite();
 		suite.add('Charon#format', function() {
 			var d = new charon().format('{YYYY}-{MM}-{DD}');
 		})
@@ -58,7 +57,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
 
 	tests.push(function(next) {
-		var suite = new Benchmark.Suite;
+		var suite = new Benchmark.Suite();
 		suite.add('Charon#basicParsing', function() {
 			var d = new charon('1991-08-25');
 		})
@@ -77,7 +76,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
 
 	tests.push(function(next) {
-		var suite = new Benchmark.Suite;
+		var suite = new Benchmark.Suite();
 		suite.add('Charon#parsingISO', function() {
 			var d = new charon('1991-08-25 12:02:04');
 		})
@@ -96,7 +95,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
 
 	tests.push(function(next) {
-		var suite = new Benchmark.Suite;
+		var suite = new Benchmark.Suite();
 		suite.add('Charon#parsingISOTZ', function() {
 			var d = new charon('1991-08-25 12:02:04+01:00');
 		})
@@ -115,7 +114,7 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
 
 	tests.push(function(next) {
-		var suite = new Benchmark.Suite;
+		var suite = new Benchmark.Suite();
 		suite.add('Charon#add', function() {
 			var d = new charon('1991-08-25 12:02:04+01:00').add(5, 'days');
 		})
