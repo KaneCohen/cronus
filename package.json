@@ -1,32 +1,32 @@
 {
   "name": "charon",
   "version": "0.2.0",
-	"author": {
-		"name": "Kane Cohen",
-		"email": "kanecohen@gmail.com"
-	},
-  "description": "Simple javascript Date manipulation, parsing and printing library.",
-	"keywords": ["date", "parsing"],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/KaneCohen/charon.git"
+  "author": {
+    "name": "Kane Cohen",
+    "email": "kanecohen@gmail.com"
   },
-	"licenses": [
-		{
-			"type": "BSD",
-			"url": "https://github.com/KaneCohen/charon/master/LICENSE"
-		}
-	],
-	"devDependencies": {
-		"uglify-js": "latest",
-		"nodeunit": "latest",
-		"grunt": "latest",
-		"grunt-contrib-nodeunit": "latest",
-		"grunt-contrib-uglify": "latest",
-		"grunt-contrib-jshint": "latest",
-		"grunt-contrib-watch": "latest"
-	},
-	"scripts": {
-		"test": "grunt test:node"
-	}
+  "description": "Simple javascript Date manipulation, parsing and printing library.",
+  "keywords": ["date", "parsing"],
+  "repository": {
+  "type": "git",
+  "url": "git://github.com/KaneCohen/charon.git"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://github.com/KaneCohen/charon/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "uglify-js": "latest",
+    "nodeunit": "latest",
+    "grunt": "latest",
+    "grunt-contrib-nodeunit": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-watch": "latest"
+  },
+  "scripts": {
+    "test": "grunt test:node"
+  }
 }
