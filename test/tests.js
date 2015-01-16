@@ -120,7 +120,7 @@ define(['charon', 'lang'], function(charon, ru) {
       equal(twentyNineDaysAgo.fromNow(), '29 days ago');
 
       var thirtyOneDaysAgo = new charon(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
-      var date = thirtyOneDaysAgo.format('{D} {MMMM}');
+      var date = thirtyOneDaysAgo.format('{D} {MMMM} {YYYY}');
       equal(thirtyOneDaysAgo.fromNow(), date);
     });
 
