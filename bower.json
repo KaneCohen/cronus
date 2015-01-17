@@ -2,6 +2,7 @@
   "name": "charon",
   "version": "0.3.0",
   "main": "lib/charon.js",
+  "ignore": [],
   "keywords": ["date", "time", "parsing"],
   "dependencies": {}
 }
