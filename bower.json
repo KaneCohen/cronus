@@ -1,0 +1,7 @@
+{
+  "name": "charon",
+  "version": "0.3.0",
+  "main": "lib/charon.js",
+  "keywords": ["date", "time", "parsing"],
+  "dependencies": {}
+}
