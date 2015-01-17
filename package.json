@@ -8,8 +8,8 @@
   "description": "Simple javascript Date manipulation, parsing and printing library.",
   "keywords": ["date", "parsing"],
   "repository": {
-  "type": "git",
-  "url": "git://github.com/KaneCohen/charon.git"
+    "type": "git",
+    "url": "git://github.com/KaneCohen/charon.git"
   },
   "licenses": [
     {
