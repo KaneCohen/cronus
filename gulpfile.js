@@ -5,17 +5,17 @@ var gulp = require('gulp'),
     fs = require('fs');
 
 gulp.task('test', function() {
-  gulp.src('./test/charon/tests.js')
+  gulp.src('./test/cronus/tests.js')
     .pipe(nodeunit());
 });
 
 gulp.task('uglify', function() {
   try {
-    fs.unlinkSync('./lib/charon.min.js');
+    fs.unlinkSync('./lib/cronus.min.js');
   } catch(err) { }
 
-  gulp.src('./lib/charon.js')
-    .pipe(uglify('charon.min.js', {
+  gulp.src('./lib/cronus.js')
+    .pipe(uglify('cronus.min.js', {
       mangle: true,
       compress: {
         dead_code: false
@@ -30,7 +30,7 @@ gulp.task('uglify', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src('./lib/charon.js')
+  return gulp.src('./lib/cronus.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });

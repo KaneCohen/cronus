@@ -1,20 +1,20 @@
 {
-  "name": "charon",
+  "name": "cronus",
   "version": "0.3.0",
   "author": {
     "name": "Kane Cohen",
     "email": "kanecohen@gmail.com"
   },
   "description": "Simple javascript Date manipulation, parsing and printing library.",
-  "keywords": ["date", "parsing"],
+  "keywords": ["date", "time", "parsing"],
   "repository": {
     "type": "git",
-    "url": "git://github.com/KaneCohen/charon.git"
+    "url": "git://github.com/KaneCohen/cronus.git"
   },
   "licenses": [
     {
       "type": "BSD",
-      "url": "https://github.com/KaneCohen/charon/master/LICENSE"
+      "url": "https://github.com/KaneCohen/cronus/master/LICENSE"
     }
   ],
   "devDependencies": {

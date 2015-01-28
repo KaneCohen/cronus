@@ -1,9 +1,9 @@
-var charon = require('../../lib/charon.js');
+var cronus = require('../../lib/cronus.js');
 var lang = require('../../lang/ru.js');
 
-exports.charon = {
+exports.cronus = {
   setUp: function(done) {
-    charon.lang('en');
+    cronus.lang('en');
     var off = new Date().getTimezoneOffset();
     this.msOff = off*60;
 
@@ -13,25 +13,25 @@ exports.charon = {
   "instantiation": function(test) {
     test.expect(10);
 
-    var c = new charon();
+    var c = new cronus();
 
-    test.ok(c instanceof charon, 'instance should be charon');
+    test.ok(c instanceof cronus, 'instance should be cronus');
     test.ok(c.toDate() instanceof Date, 'toDate method return should be instance of Date');
 
-    test.ok(charon.today() instanceof charon, 'return should be instance of charon');
-    test.ok(charon.today().toDate() instanceof Date, 'date should be instance of Date');
+    test.ok(cronus.today() instanceof cronus, 'return should be instance of cronus');
+    test.ok(cronus.today().toDate() instanceof Date, 'date should be instance of Date');
 
-    test.ok(charon.tomorrow() instanceof charon, 'return should be instance of charon');
-    test.ok(charon.tomorrow().toDate() instanceof Date, 'date should be instance of Date');
+    test.ok(cronus.tomorrow() instanceof cronus, 'return should be instance of cronus');
+    test.ok(cronus.tomorrow().toDate() instanceof Date, 'date should be instance of Date');
 
-    test.ok(charon.yesterday() instanceof charon, 'return should be instance of charon');
-    test.ok(charon.yesterday().toDate() instanceof Date, 'date should be instance of Date');
+    test.ok(cronus.yesterday() instanceof cronus, 'return should be instance of cronus');
+    test.ok(cronus.yesterday().toDate() instanceof Date, 'date should be instance of Date');
 
-    var x = new charon('1991-08-25');
-    var y = new charon();
+    var x = new cronus('1991-08-25');
+    var y = new cronus();
     test.notEqual(x.unix(), y.unix(), 'two instance results should not be equal');
 
-    c = new charon([1991, 7, 25]);
+    c = new cronus([1991, 7, 25]);
     test.equal(c.unix() - this.msOff, 683078400, 'should return correct date when setting it via array');
 
     test.done();
@@ -39,9 +39,9 @@ exports.charon = {
 
   "language": function(test) {
     test.expect(2);
-    charon.lang('ru');
+    cronus.lang('ru');
 
-    var c = new charon();
+    var c = new cronus();
     test.equal(c._lang, 'ru', 'Language should be set to russian');
     test.equal(c.lang().relativeTime.prefixFromNow, 'через', 'Language line should be set to translated one');
 
@@ -52,7 +52,7 @@ exports.charon = {
     test.expect(2);
 
     var d = new Date();
-    var c = new charon(d);
+    var c = new cronus(d);
 
     test.equal(c.timestamp(), d.getTime(), 'Get Date timestamp (in milliseconds)');
     test.equal(c.unix(), Math.floor(d.getTime()/1000), 'Get unix timestamp');
@@ -64,32 +64,32 @@ exports.charon = {
     test.expect(7);
 
     // Simple date parsing. Will set inner date to 00:00:00 local.
-    var c = new charon('1991-08-25');
+    var c = new cronus('1991-08-25');
     test.equal(c.unix() - this.msOff, 683078400, 'Set date with simple Y-M-D string');
 
     // Normal parsing with local timezone.
     // Compare unix timestamp, but with compensation for local offset.
-    c = new charon('1991-08-25 20:57:08');
+    c = new cronus('1991-08-25 20:57:08');
     test.equal(c.unix() - this.msOff, 683153828, 'Set date with ISO-like string');
 
-    c = new charon('1991-08-25T20:57:08');
+    c = new cronus('1991-08-25T20:57:08');
     test.equal(c.unix() - this.msOff, 683153828, 'Set date with second ISO-like string');
 
     // Format parsing with local timezone.
     // Compare unix timestamp, but with compensation for local offset.
-    c = new charon('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
+    c = new cronus('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
     test.equal(c.unix() - this.msOff, 683153828, 'Set date with custom format');
 
     // Create in UTC format - timezone compensation is automatic.
-    c = charon.utc('1991-08-25T20:57:08');
+    c = cronus.utc('1991-08-25T20:57:08');
     test.equal(c.unix(), 683153828, 'Set date in UTC Mode');
 
     // Parse in normal mode with 0 offset and convert to UTC.
-    c = new charon('1991-08-25T20:57:08+00:00');
+    c = new cronus('1991-08-25T20:57:08+00:00');
     test.equal(c.utc().unix(), 683153828, 'Set date in UTC mode with ISO string');
 
     // Parse in UTC mode and check unix timesamp.
-    c = charon.utc('1991-08-25 20:57:08');
+    c = cronus.utc('1991-08-25 20:57:08');
     test.equal(c.unix(), 683153828, 'Set date in UTC mode with ISO-like string');
 
     test.done();
@@ -99,7 +99,7 @@ exports.charon = {
     test.expect(5);
 
     var d = new Date();
-    var c = new charon(d);
+    var c = new cronus(d);
     d.setMilliseconds(0);
     test.equal(c.startOf('second').timestamp(), d.getTime(), 'Set to start of second');
     d.setSeconds(0);
@@ -110,7 +110,7 @@ exports.charon = {
     test.equal(c.startOf('day').timestamp(), d.getTime(), 'Set to start of day');
 
     var dw = new Date(1991, 7, 25);
-    var cw = new charon([1991, 7, 27]);
+    var cw = new cronus([1991, 7, 27]);
     test.equal(cw.startOf('week').timestamp(), dw.getTime(), 'should be correct when setting start of week');
 
     test.done();
@@ -119,28 +119,28 @@ exports.charon = {
   "fromNow method": function(test) {
     test.expect(8);
 
-    var now = new charon(new Date());
+    var now = new cronus(new Date());
     test.equal(now.fromNow(), 'just now', 'From now to now');
 
-    var fiveMinAgo = new charon(new Date().getTime() - (5 * 60 * 1000));
+    var fiveMinAgo = new cronus(new Date().getTime() - (5 * 60 * 1000));
     test.equal(fiveMinAgo.fromNow(), '5 minutes ago', 'From noow to 5 minutes ago');
 
-    var fourtyFourMinAgo = new charon(new Date().getTime() - (44 * 60 * 1000));
+    var fourtyFourMinAgo = new cronus(new Date().getTime() - (44 * 60 * 1000));
     test.equal(fourtyFourMinAgo.fromNow(), '44 minutes ago', 'From now to 44 minutes ago');
 
-    var fourtyFiveMinAgo = new charon(new Date().getTime() - (45 * 60 * 1000));
+    var fourtyFiveMinAgo = new cronus(new Date().getTime() - (45 * 60 * 1000));
     test.equal(fourtyFiveMinAgo.fromNow(), 'an hour ago', 'From now to 45 minutes ago');
 
-    var twentyHoursAgo = new charon(new Date().getTime() - (20 * 60 * 60 * 1000));
+    var twentyHoursAgo = new cronus(new Date().getTime() - (20 * 60 * 60 * 1000));
     test.equal(twentyHoursAgo.fromNow(), '20 hours ago', 'From now to 20 hours ago');
 
-    var twentyFourHoursAgo = new charon(new Date().getTime() - (24 * 60 * 60 * 1000));
+    var twentyFourHoursAgo = new cronus(new Date().getTime() - (24 * 60 * 60 * 1000));
     test.equal(twentyFourHoursAgo.fromNow(), 'a day ago', 'From now to 24 hours ago');
 
-    var twentyNineDaysAgo = new charon(new Date().getTime() - (29 * 24 * 60 * 60 * 1000));
+    var twentyNineDaysAgo = new cronus(new Date().getTime() - (29 * 24 * 60 * 60 * 1000));
     test.equal(twentyNineDaysAgo.fromNow(), '29 days ago', 'From now to 29 days ago');
 
-    var thirtyOneDaysAgo = new charon(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
+    var thirtyOneDaysAgo = new cronus(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
     var date = thirtyOneDaysAgo.format('{D} {MMMM} {YYYY}');
     test.equal(thirtyOneDaysAgo.fromNow(), date, 'From now to 31 days ago');
 
@@ -153,17 +153,17 @@ exports.charon = {
     var yesterday = new Date('2014-07-03 00:00:00');
     var tomorrow = new Date('2014-07-05 00:00:00');
 
-    var c = new charon('2014-07-04 12:05:45');
+    var c = new cronus('2014-07-04 12:05:45');
     test.equal(c.yesterday().timestamp(), yesterday.getTime(), 'get yesterday');
 
-    var c2 = new charon('2014-07-04 12:05:45');
+    var c2 = new cronus('2014-07-04 12:05:45');
     test.equal(c2.tomorrow().timestamp(), tomorrow.getTime(), 'get tomorrow');
 
-    var c3 = new charon('2014-07-04 12:05:45');
+    var c3 = new cronus('2014-07-04 12:05:45');
     yesterday = new Date('2014-07-03 12:05:45');
     test.equal(c3.sub(1, 'day').timestamp(), yesterday.getTime(), 'yesterday via subtract');
 
-    var c4 = new charon('2014-07-04 12:05:45');
+    var c4 = new cronus('2014-07-04 12:05:45');
     in10Days = new Date('2014-07-14 12:05:45');
     test.equal(c4.add(10, 'days').timestamp(), in10Days.getTime(), 'in 10 days via add');
 
@@ -173,7 +173,7 @@ exports.charon = {
   "getters and setters": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2014);
     c.month(10);
     c.date(11);
@@ -194,7 +194,7 @@ exports.charon = {
   "add with short": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2014);
     c.month(10);
     c.date(11);
@@ -215,7 +215,7 @@ exports.charon = {
   "add with long singular": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2014);
     c.month(10);
     c.date(11);
@@ -236,7 +236,7 @@ exports.charon = {
   "add with long plural": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2014);
     c.month(10);
     c.date(11);
@@ -257,7 +257,7 @@ exports.charon = {
   "subtract with short": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2011);
     c.month(6);
     c.date(11);
@@ -278,7 +278,7 @@ exports.charon = {
   "subtract with long singular": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2011);
     c.month(6);
     c.date(11);
@@ -299,7 +299,7 @@ exports.charon = {
   "subtract with long plural": function(test) {
     test.expect(6);
 
-    var c = new charon();
+    var c = new cronus();
     c.year(2011);
     c.month(6);
     c.date(11);

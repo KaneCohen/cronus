@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    charon: '../lib/charon',
+    cronus: '../lib/cronus',
     moment: 'http://momentjs.com/downloads/moment',
     benchmark: 'vendor/benchmark'
   },
@@ -11,7 +11,7 @@ require.config({
   }
 });
 
-require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
+require(['cronus', 'moment', 'benchmark'], function(cronus, moment, Benchmark) {
 
   function log(message) {
     var el = document.createElement('div');
@@ -39,8 +39,8 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
   tests.push(function(next) {
     var suite = new Benchmark.Suite();
-    suite.add('Charon#format', function() {
-      var d = new charon().format('{YYYY}-{MM}-{DD}');
+    suite.add('cronus#format', function() {
+      var d = new cronus().format('{YYYY}-{MM}-{DD}');
     })
     .add('Moment#format', function() {
       var d = new moment().format('YYYY-MM-DD');
@@ -58,8 +58,8 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
   tests.push(function(next) {
     var suite = new Benchmark.Suite();
-    suite.add('Charon#basicParsing', function() {
-      var d = new charon('1991-08-25');
+    suite.add('cronus#basicParsing', function() {
+      var d = new cronus('1991-08-25');
     })
     .add('Moment#basicParsing', function() {
       var d = new moment('1991-08-25');
@@ -77,8 +77,8 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
   tests.push(function(next) {
     var suite = new Benchmark.Suite();
-    suite.add('Charon#parsingISO', function() {
-      var d = new charon('1991-08-25 12:02:04');
+    suite.add('cronus#parsingISO', function() {
+      var d = new cronus('1991-08-25 12:02:04');
     })
     .add('Moment#parsingISO', function() {
       var d = new moment('1991-08-25 12:02:04');
@@ -96,8 +96,8 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
   tests.push(function(next) {
     var suite = new Benchmark.Suite();
-    suite.add('Charon#parsingISOTZ', function() {
-      var d = new charon('1991-08-25 12:02:04+01:00');
+    suite.add('cronus#parsingISOTZ', function() {
+      var d = new cronus('1991-08-25 12:02:04+01:00');
     })
     .add('Moment#parsingISOTX', function() {
       var d = new moment('1991-08-25 12:02:04+01:00');
@@ -115,8 +115,8 @@ require(['charon', 'moment', 'benchmark'], function(charon, moment, Benchmark) {
 
   tests.push(function(next) {
     var suite = new Benchmark.Suite();
-    suite.add('Charon#add', function() {
-      var d = new charon('1991-08-25 12:02:04+01:00').add(5, 'days');
+    suite.add('cronus#add', function() {
+      var d = new cronus('1991-08-25 12:02:04+01:00').add(5, 'days');
     })
     .add('Moment#add', function() {
       var d = new moment('1991-08-25 12:02:04+01:00').add(5, 'days');

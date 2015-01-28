@@ -1,4 +1,4 @@
-Charon
+Cronus
 ======
 
 Javascript Date manipulation and parsing module.
@@ -10,14 +10,14 @@ How to use
 ======
 
 ````js
-define('app', ['charon'], function(charon) {
+define('app', ['cronus'], function(cronus) {
 
-	// Creates new instance of charon with date set to crrent moment.
-	var date = new charon();
+	// Creates new instance of cronus with date set to crrent moment.
+	var date = new cronus();
 
 	// Parsing will create new instance with set date and time.
 	// In this case 12th of May, 2014 at current time (not at the beginning of the day).
-	var dateP = new charon('2014-05-12 12:05:45');
+	var dateP = new cronus('2014-05-12 12:05:45');
 
 	// Add one day to the instance turning it into '2014-05-13 12:05:45'.
 	dateP.add(1, 'day');
@@ -38,13 +38,13 @@ define('app', ['charon'], function(charon) {
 Format
 ======
 
-Formatting charon date instance into the human-readable form.
+Formatting cronus date instance into the human-readable form.
 You can either use `format` method without any arguments which will return
 date in an ISO format or you can specify your own format.
 
 ````js
 
-var date = new charon();
+var date = new cronus();
 date.format(); // Will return date in an ISO format: '2014-03-12T15:12:22-08:00'.
 
 date.format('{YYYY}-{MM}-{DD}'); // Specify your own format. Will return '2014-03-12'.
@@ -100,7 +100,7 @@ treated as normal text and won't be formatted.
 UTC Mode
 ======
 
-Charon has a very useful feature when working with multiple timezones - UTC mode.
+Cronus has a very useful feature when working with multiple timezones - UTC mode.
 When this mode is enabled, current datetime object will be altered
 to show UTC time without any timezone modifications.
 
@@ -108,11 +108,11 @@ Usually, UTC mode is used whenever you need to return correct datestring with `f
 
 ````js
 // Turn new instance into UTC date.
-var date = new charon().utc();
+var date = new cronus().utc();
 // OR
-var date = charon.utc();
+var date = cronus.utc();
 // OR
-var date = charon.utc('2014-05-13 12:05:45');
+var date = cronus.utc('2014-05-13 12:05:45');
 
 // To convert current UTC date to the current local time use `local`
 date.local();
@@ -124,8 +124,8 @@ Diff
 You can calculate difference between two dates in various units.
 
 ````js
-var date1 = new charon();
-var date2 = new charon().sub(5, 'days');
+var date1 = new cronus();
+var date2 = new cronus().sub(5, 'days');
 
 // Will return difference in milliseconds.
 var diff = date1.diff(date2);
@@ -137,12 +137,12 @@ var diffS = date1.diff(date2, 'seconds'); // Yuo can also use unit aliases such 
 var diffH = date1.diff(date2, 'hours'); // Yuo can also use unit aliases such as 'h' or 'hour'
 ````
 
-Besides getting difference in one unit type only, you can ask charon to return
+Besides getting difference in one unit type only, you can ask cronus to return
 an object containing all differences.
 
 ````js
-var date1 = new charon();
-var date2 = new charon().sub(5, 'days');
+var date1 = new cronus();
+var date2 = new cronus().sub(5, 'days');
 
 var diff = date1.diff(date2, 'all');
 // That will return following object:

@@ -1,14 +1,14 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['charon'], factory);
+    define(['cronus'], factory);
   } else if (typeof exports === 'object') {
     module.exports = factory(require('../index'));
   } else {
-    root.returnExports = factory(root.charon);
+    root.returnExports = factory(root.cronus);
   }
-}(this, function(charon) {
+}(this, function(cronus) {
   'use strict';
-  return charon.lang('ru', {
+  return cronus.lang('ru', {
     relativeTime: {
       prefixAgo: null,
       prefixFromNow: 'через',

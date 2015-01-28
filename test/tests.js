@@ -1,4 +1,4 @@
-define(['charon', 'lang'], function(charon, ru) {
+define(['cronus', 'lang'], function(cronus, ru) {
   var run = function() {
 
     var d;
@@ -6,46 +6,46 @@ define(['charon', 'lang'], function(charon, ru) {
     var off = new Date().getTimezoneOffset();
     var msOff = off*60;
 
-    module("charon", {
+    module("cronus", {
 
       setup: function() {
         d = new Date();
-        charon.lang('en');
+        cronus.lang('en');
       }
 
     });
 
     test("instantiation", 9, function() {
-      var c = new charon(d);
+      var c = new cronus(d);
 
-      var cc = new charon();
+      var cc = new cronus();
 
-      ok(c instanceof charon);
+      ok(c instanceof cronus);
       ok(c.toDate() instanceof Date);
 
-      ok(charon.today() instanceof charon);
-      ok(charon.today().toDate() instanceof Date);
+      ok(cronus.today() instanceof cronus);
+      ok(cronus.today().toDate() instanceof Date);
 
-      ok(charon.tomorrow() instanceof charon);
-      ok(charon.tomorrow().toDate() instanceof Date);
+      ok(cronus.tomorrow() instanceof cronus);
+      ok(cronus.tomorrow().toDate() instanceof Date);
 
-      ok(charon.yesterday() instanceof charon);
-      ok(charon.yesterday().toDate() instanceof Date);
+      ok(cronus.yesterday() instanceof cronus);
+      ok(cronus.yesterday().toDate() instanceof Date);
 
-      var x = new charon('1991-08-25');
-      var y = new charon();
+      var x = new cronus('1991-08-25');
+      var y = new cronus();
       notEqual(x.unix(), y.unix());
     });
 
     test("language", 2, function() {
-      charon.lang('ru');
-      var c = new charon();
+      cronus.lang('ru');
+      var c = new cronus();
       equal(c._lang, 'ru');
       equal(c.lang().relativeTime.prefixFromNow, 'через');
     });
 
     test("timestamps", 2, function() {
-      var c = new charon(d);
+      var c = new cronus(d);
 
       equal(c.timestamp(), d.getTime());
       equal(c.unix(), Math.floor(d.getTime()/1000));
@@ -55,37 +55,37 @@ define(['charon', 'lang'], function(charon, ru) {
       var c;
 
       // Simple date parseing. Will set inner date to 00:00:00 local.
-      c = new charon('1991-08-25');
+      c = new cronus('1991-08-25');
       equal(c.unix() - msOff, 683078400);
 
       // Normal parsing with local timezone.
       // Compare unix timestamp, but with compensation for local offset.
-      c = new charon('1991-08-25 20:57:08');
+      c = new cronus('1991-08-25 20:57:08');
       equal(c.unix() - msOff, 683153828);
 
       // Format parsing with local timezone.
       // Compare unix timestamp, but with compensation for local offset.
-      c = new charon('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
+      c = new cronus('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
       equal(c.unix() - msOff, 683153828);
 
-      c = new charon('1991-08-25T20:57:08');
+      c = new cronus('1991-08-25T20:57:08');
       equal(c.unix() - msOff, 683153828);
 
       // Create in UTC format - timezone compensation is automatic.
-      c = charon.utc('1991-08-25T20:57:08');
+      c = cronus.utc('1991-08-25T20:57:08');
       equal(c.unix(), 683153828);
 
       // Parse in normal mode with 0 offset and convert to UTC.
-      c = new charon('1991-08-25T20:57:08+00:00');
+      c = new cronus('1991-08-25T20:57:08+00:00');
       equal(c.utc().unix(), 683153828);
 
       // Parse in UTC mode and check unix timesamp.
-      c = charon.utc('1991-08-25 20:57:08');
+      c = cronus.utc('1991-08-25 20:57:08');
       equal(c.unix(), 683153828);
     });
 
     test("startOf method", 4, function() {
-      var c = new charon(d);
+      var c = new cronus(d);
 
       d.setMilliseconds(0);
       equal(c.startOf('second').timestamp(), d.getTime());
@@ -98,28 +98,28 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("fromNow method", 8, function() {
-      var now = new charon(new Date);
+      var now = new cronus(new Date);
       equal(now.fromNow(), 'just now');
 
-      var fiveMinAgo = new charon(new Date().getTime() - (5 * 60 * 1000));
+      var fiveMinAgo = new cronus(new Date().getTime() - (5 * 60 * 1000));
       equal(fiveMinAgo.fromNow(), '5 minutes ago');
 
-      var fourtyFourMinAgo = new charon(new Date().getTime() - (44 * 60 * 1000));
+      var fourtyFourMinAgo = new cronus(new Date().getTime() - (44 * 60 * 1000));
       equal(fourtyFourMinAgo.fromNow(), '44 minutes ago');
 
-      var fourtyFiveMinAgo = new charon(new Date().getTime() - (45 * 60 * 1000));
+      var fourtyFiveMinAgo = new cronus(new Date().getTime() - (45 * 60 * 1000));
       equal(fourtyFiveMinAgo.fromNow(), 'an hour ago');
 
-      var twentyHoursAgo = new charon(new Date().getTime() - (20 * 60 * 60 * 1000));
+      var twentyHoursAgo = new cronus(new Date().getTime() - (20 * 60 * 60 * 1000));
       equal(twentyHoursAgo.fromNow(), '20 hours ago');
 
-      var twentyFourHoursAgo = new charon(new Date().getTime() - (24 * 60 * 60 * 1000));
+      var twentyFourHoursAgo = new cronus(new Date().getTime() - (24 * 60 * 60 * 1000));
       equal(twentyFourHoursAgo.fromNow(), 'a day ago');
 
-      var twentyNineDaysAgo = new charon(new Date().getTime() - (29 * 24 * 60 * 60 * 1000));
+      var twentyNineDaysAgo = new cronus(new Date().getTime() - (29 * 24 * 60 * 60 * 1000));
       equal(twentyNineDaysAgo.fromNow(), '29 days ago');
 
-      var thirtyOneDaysAgo = new charon(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
+      var thirtyOneDaysAgo = new cronus(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
       var date = thirtyOneDaysAgo.format('{D} {MMMM} {YYYY}');
       equal(thirtyOneDaysAgo.fromNow(), date);
     });
@@ -128,23 +128,23 @@ define(['charon', 'lang'], function(charon, ru) {
       var yesterday = new Date(2014, 6, 3, 0, 0, 0);
       var tomorrow = new Date(2014, 6, 5, 0, 0, 0);
 
-      var c = new charon('2014-07-04 12:05:45');
+      var c = new cronus('2014-07-04 12:05:45');
       equal(c.yesterday().timestamp(), yesterday.getTime());
 
-      var c2 = new charon('2014-07-04 12:05:45');
+      var c2 = new cronus('2014-07-04 12:05:45');
       equal(c2.tomorrow().timestamp(), tomorrow.getTime());
 
-      var c3 = new charon('2014-07-04 12:05:45');
+      var c3 = new cronus('2014-07-04 12:05:45');
       yesterday = new Date(2014, 6, 3, 12, 5, 45);
       equal(c3.sub(1, 'day').timestamp(), yesterday.getTime());
 
-      var c4 = new charon('2014-07-04 12:05:45');
+      var c4 = new cronus('2014-07-04 12:05:45');
       in10Days = new Date(2014, 6, 14, 12, 5, 45);
       equal(c4.add(10, 'days').timestamp(), in10Days.getTime());
     });
 
     test("getters and setters", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2014);
       c.month(10);
@@ -162,7 +162,7 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("add with short", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2014);
       c.month(10);
@@ -180,7 +180,7 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("add with long singular", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2014);
       c.month(10);
@@ -198,7 +198,7 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("add with long plural", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2014);
       c.month(10);
@@ -216,7 +216,7 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("subtract with short", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2011);
       c.month(6);
@@ -234,7 +234,7 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("subtract with long singular", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2011);
       c.month(6);
@@ -252,7 +252,7 @@ define(['charon', 'lang'], function(charon, ru) {
     });
 
     test("subtract with long plural", 6, function() {
-      var c = new charon();
+      var c = new cronus();
 
       c.year(2011);
       c.month(6);
