@@ -1,7 +1,7 @@
 require.config({
 	paths: {
 		lang: '../lang/ru',
-		charon: '../lib/charon',
+		cronus: '../lib/cronus',
 		qunit: 'vendor/qunit'
 	},
 	shim: {
