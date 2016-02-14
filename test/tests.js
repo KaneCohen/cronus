@@ -98,7 +98,7 @@ define(['cronus', 'lang'], function(cronus, ru) {
     });
 
     test("fromNow method", 8, function() {
-      var now = new cronus(new Date);
+      var now = new cronus(new Date());
       equal(now.fromNow(), 'just now');
 
       var fiveMinAgo = new cronus(new Date().getTime() - (5 * 60 * 1000));
@@ -119,7 +119,7 @@ define(['cronus', 'lang'], function(cronus, ru) {
       var twentyNineDaysAgo = new cronus(new Date().getTime() - (29 * 24 * 60 * 60 * 1000));
       equal(twentyNineDaysAgo.fromNow(), '29 days ago');
 
-      var thirtyOneDaysAgo = new cronus(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
+      var thirtyOneDaysAgo = new cronus(new Date(2000, 6, 6).getTime() - (31 * 24 * 60 * 60 * 1000));
       var date = thirtyOneDaysAgo.format('{D} {MMMM} {YYYY}');
       equal(thirtyOneDaysAgo.fromNow(), date);
     });
