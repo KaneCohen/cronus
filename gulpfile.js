@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglifyjs'),
     nodeunit = require('gulp-nodeunit-runner'),
-    jshint = require('gulp-jshint'),
     fs = require('fs');
 
 gulp.task('test', function() {
@@ -27,10 +26,4 @@ gulp.task('uglify', function() {
       report: 'min',
     }))
     .pipe(gulp.dest('./lib/'));
-});
-
-gulp.task('lint', function() {
-  return gulp.src('./lib/cronus.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
 });
