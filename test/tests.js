@@ -269,6 +269,18 @@ define(['cronus', 'lang'], function(cronus, ru) {
       equal(c.sub(5, 'milliseconds').milliseconds(), 6);
     });
 
+    test("clone", 3, function() {
+      var c = new cronus(d);
+      var cloned = c.clone();
+
+      var cUTC = cronus.utc(d);
+      var clonedUTC = cUTC.clone();
+
+      equal(c.format(), cloned.format());
+      equal(cUTC.format(), clonedUTC.format());
+      notEqual(c.format(), clonedUTC.format());
+    });
+
   };
 
   return {run: run};

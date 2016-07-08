@@ -141,7 +141,12 @@ exports.cronus = {
     test.equal(twentyNineDaysAgo.fromNow(), '29 days ago', 'From now to 29 days ago');
 
     var thirtyOneDaysAgo = new cronus(new Date().getTime() - (31 * 24 * 60 * 60 * 1000));
-    var date = thirtyOneDaysAgo.format('{D} {MMMM} {YYYY}');
+    // Depending on the year - we either render with year or without.
+    if (new Date().getMonth() > 0) {
+      var date = thirtyOneDaysAgo.format('{D} {MMMM}');
+    } else {
+      var date = thirtyOneDaysAgo.format('{D} {MMMM} {YYYY}');
+    }
     test.equal(thirtyOneDaysAgo.fromNow(), date, 'From now to 31 days ago');
 
     test.done();
@@ -313,6 +318,21 @@ exports.cronus = {
     test.equal(c.sub(5, 'minutes').minutes(), 12, 'Sub minutes');
     test.equal(c.sub(10, 'seconds').seconds(), 33, 'Sub seconds');
     test.equal(c.sub(5, 'milliseconds').milliseconds(), 6, 'Sub milliseconds');
+
+    test.done();
+  },
+
+  "clone": function(test) {
+    test.expect(3);
+    var c = new cronus();
+    var cloned = c.clone();
+
+    var cUTC = cronus.utc();
+    var clonedUTC = cUTC.clone();
+
+    test.equal(c.format(), cloned.format());
+    test.equal(cUTC.format(), clonedUTC.format());
+    test.notEqual(c.format(), clonedUTC.format());
 
     test.done();
   }
