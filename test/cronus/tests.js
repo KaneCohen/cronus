@@ -1,5 +1,5 @@
-var cronus = require('../../lib/cronus.js');
-var lang = require('../../lang/ru.js');
+var cronus = require('../../index');
+require('../../lang/ru.js');
 
 exports.cronus = {
   setUp: function(done) {
@@ -31,8 +31,8 @@ exports.cronus = {
     var y = new cronus();
     test.notEqual(x.unix(), y.unix(), 'two instance results should not be equal');
 
-    c = new cronus([1991, 7, 25]);
-    test.equal(c.unix() - this.msOff, 683078400, 'should return correct date when setting it via array');
+    c = new cronus([1991, 1, 25]);
+    test.equal(c.unix() - this.msOff, 667440000, 'should return correct date when setting it via array');
 
     test.done();
   },
@@ -64,33 +64,33 @@ exports.cronus = {
     test.expect(7);
 
     // Simple date parsing. Will set inner date to 00:00:00 local.
-    var c = new cronus('1991-08-25');
-    test.equal(c.unix() - this.msOff, 683078400, 'Set date with simple Y-M-D string');
+    var c = new cronus('1991-02-25');
+    test.equal(c.unix() - this.msOff, 667440000, 'Set date with simple Y-M-D string');
 
     // Normal parsing with local timezone.
     // Compare unix timestamp, but with compensation for local offset.
-    c = new cronus('1991-08-25 20:57:08');
-    test.equal(c.unix() - this.msOff, 683153828, 'Set date with ISO-like string');
+    c = new cronus('1991-02-25 20:57:08');
+    test.equal(c.unix() - this.msOff, 667515428, 'Set date with ISO-like string');
 
-    c = new cronus('1991-08-25T20:57:08');
-    test.equal(c.unix() - this.msOff, 683153828, 'Set date with second ISO-like string');
+    c = new cronus('1991-02-25T20:57:08');
+    test.equal(c.unix() - this.msOff, 667515428, 'Set date with second ISO-like string');
 
     // Format parsing with local timezone.
     // Compare unix timestamp, but with compensation for local offset.
-    c = new cronus('1991-08-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
-    test.equal(c.unix() - this.msOff, 683153828, 'Set date with custom format');
+    c = new cronus('1991-02-25 20:57:08', '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}');
+    test.equal(c.unix() - this.msOff, 667515428, 'Set date with custom format');
 
     // Create in UTC format - timezone compensation is automatic.
-    c = cronus.utc('1991-08-25T20:57:08');
-    test.equal(c.unix(), 683153828, 'Set date in UTC Mode');
+    c = cronus.utc('1991-02-25T20:57:08');
+    test.equal(c.unix(), 667515428, 'Set date in UTC Mode');
 
     // Parse in normal mode with 0 offset and convert to UTC.
-    c = new cronus('1991-08-25T20:57:08+00:00');
-    test.equal(c.utc().unix(), 683153828, 'Set date in UTC mode with ISO string');
+    c = new cronus('1991-02-25T20:57:08+00:00');
+    test.equal(c.utc().unix(), 667515428, 'Set date in UTC mode with ISO string');
 
     // Parse in UTC mode and check unix timesamp.
-    c = cronus.utc('1991-08-25 20:57:08');
-    test.equal(c.unix(), 683153828, 'Set date in UTC mode with ISO-like string');
+    c = cronus.utc('1991-02-25 20:57:08');
+    test.equal(c.unix(), 667515428, 'Set date in UTC mode with ISO-like string');
 
     test.done();
   },
@@ -333,6 +333,17 @@ exports.cronus = {
     test.equal(c.format(), cloned.format());
     test.equal(cUTC.format(), clonedUTC.format());
     test.notEqual(c.format(), clonedUTC.format());
+
+    test.done();
+  },
+
+  "common formats": function(test) {
+    test.expect(3);
+    var c = new cronus.utc('1991-08-25 15:34:22');
+
+    test.equal(c.toDateString(), '1991-08-25');
+    test.equal(c.toDateTimeString(), '1991-08-25 15:34:22');
+    test.equal(c.toString(), '1991-08-25T15:34:22+0000');
 
     test.done();
   }

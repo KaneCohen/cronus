@@ -1,8 +1,0 @@
-{
-  "name": "cronus",
-  "version": "0.3.0",
-  "main": "lib/cronus.js",
-  "ignore": [],
-  "keywords": ["date", "time", "parsing"],
-  "dependencies": {}
-}

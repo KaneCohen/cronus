@@ -1,6 +1,6 @@
 {
   "name": "cronus",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": {
     "name": "Kane Cohen",
     "email": "kanecohen@gmail.com"
@@ -18,12 +18,11 @@
     }
   ],
   "devDependencies": {
-    "gulp": "~3.9.*",
-    "gulp-uglifyjs": "~0.6.2",
-    "gulp-nodeunit-runner": "~0.2.2",
-    "gulp-jshint": "~2.0.0"
+    "nodeunit": "0.10.2",
+    "webpack": "1.13.3"
   },
   "scripts": {
-    "test": "gulp test"
+    "build": "node build.js",
+    "test": "node node_modules/nodeunit/bin/nodeunit test/cronus/tests.js"
   }
 }
