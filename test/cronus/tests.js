@@ -338,12 +338,36 @@ exports.cronus = {
   },
 
   "common formats": function(test) {
-    test.expect(3);
+    test.expect(23);
     var c = new cronus.utc('1991-08-25 15:34:22');
 
     test.equal(c.toDateString(), '1991-08-25');
     test.equal(c.toDateTimeString(), '1991-08-25 15:34:22');
     test.equal(c.toString(), '1991-08-25T15:34:22+0000');
+
+    var f = cronus('2017-02-04 13:37:22');
+    test.equal(f.format('{LT}'), '1:37 PM');
+    test.equal(f.format('{LTS}'), '1:37:22 PM');
+    test.equal(f.format('{L}'), '02/04/2017');
+    test.equal(f.format('{l}'), '2/4/2017');
+    test.equal(f.format('{LL}'), 'February 4, 2017');
+    test.equal(f.format('{ll}'), 'Feb 4, 2017');
+    test.equal(f.format('{LLL}'), 'February 4, 2017 1:37 PM');
+    test.equal(f.format('{lll}'), 'Feb 4, 2017 1:37 PM');
+    test.equal(f.format('{LLLL}'), 'Saturday, February 4, 2017 1:37 PM');
+    test.equal(f.format('{llll}'), 'Sat, Feb 4, 2017 1:37 PM');
+
+    f.lang('ru');
+    test.equal(f.format('{LT}'), '13:37');
+    test.equal(f.format('{LTS}'), '13:37:22');
+    test.equal(f.format('{L}'), '04.02.2017');
+    test.equal(f.format('{l}'), '4.2.2017');
+    test.equal(f.format('{LL}'), '4 февраля 2017');
+    test.equal(f.format('{ll}'), '4 фев. 2017');
+    test.equal(f.format('{LLL}'), '4 февраля 2017, 13:37');
+    test.equal(f.format('{lll}'), '4 фев. 2017, 13:37');
+    test.equal(f.format('{LLLL}'), 'суббота, 4 февраля 2017, 13:37');
+    test.equal(f.format('{llll}'), 'сб, 4 фев. 2017, 13:37');
 
     test.done();
   }

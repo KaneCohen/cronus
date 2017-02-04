@@ -9,6 +9,19 @@
 }(this, function(cronus) {
   'use strict';
   return cronus.lang('ru', {
+    formats: {
+      LT: '{HH}:{mm}',
+      LTS: '{HH}:{mm}:{ss}',
+      L: '{DD}.{MM}.{YYYY}',
+      l: '{D}.{M}.{YYYY}',
+      LL: '{D} {MMMM} {YYYY}',
+      ll: '{D} {MMM}. {YYYY}',
+      LLL: '{D} {MMMM} {YYYY}, {HH}:{mm}',
+      lll: '{D} {MMM}. {YYYY}, {HH}:{mm}',
+      LLLL: '{wwww}, {D} {MMMM} {YYYY}, {HH}:{mm}',
+      llll: '{www}, {D} {MMM}. {YYYY}, {HH}:{mm}'
+    },
+
     relativeTime: {
       prefixAgo: null,
       prefixFromNow: 'через',
@@ -35,8 +48,21 @@
       }
     },
 
+    meridiem: function(now, isLower) {
+      var hours = now.hours();
+      if (hours < 4) {
+        return 'ночи';
+      } else if (hours < 12) {
+        return 'утра';
+      } else if (hours < 17) {
+        return 'дня';
+      } else {
+        return 'вечера';
+      }
+    },
+
     pluralizer: function(number) {
-      return ((number % 10 == 1) && (number % 100 != 11))
+      return ((number % 10 === 1) && (number % 100 !== 11))
         ? 0
         : (((number % 10 >= 2) && (number % 10 <= 4) && ((number % 100 < 10) || (number % 100 >= 20))) ? 1 : 2);
     },
@@ -66,20 +92,20 @@
     },
 
     week: {
-      weekStart: 1, // First day of the week. 0 - Sunday in USA. Set to 1 for Monday.
-      yearStart: 4  // First thursday of the year indicates first week of the year.
+      weekStart: 1,
+      yearStart: 4
     },
 
     weekdays: function(day, format, brief) {
       var weekdays = {
-        nominative: ['воскресенье' ,'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
-        accusative: ['воскресенье', 'понедельник', 'вторник', 'среду', 'четверг', 'пятницу', 'субботу'],
+        nominative: ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'],
+        accusative: ['понедельник', 'вторник', 'среду', 'четверг', 'пятницу', 'субботу', 'воскресенье'],
         brief: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
       };
       if (brief) {
         return weekdays.brief[day];
       }
-      nounCase = (/(прошлую|следующую)/).test(format) && (/{DDDD}/).test(format) ? 'accusative' : 'nominative';
+      var nounCase = (/(прошлую|следующую)/).test(format) && (/{DDDD}/).test(format) ? 'accusative' : 'nominative';
       return weekdays[nounCase][day];
     },
 
@@ -92,7 +118,7 @@
       if (brief) {
         return months.brief[month];
       }
-      nounCase = (/\{(D|DD)\} \{MMMM\}/).test(format) ? 'accusative' : 'nominative';
+      var nounCase = (/\{(D|DD)\} \{MMMM\}/).test(format) ? 'accusative' : 'nominative';
       return months[nounCase][month];
     }
   });

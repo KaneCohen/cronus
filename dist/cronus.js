@@ -54,7 +54,7 @@ module.exports =
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 	 * Simple javascript Date manipulation, parsing and printing library.
-	 * version 0.5.3
+	 * version 0.5.4
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2017 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -112,6 +112,19 @@ module.exports =
 	      // Default language object.
 	      languages = {
 	        en: {
+	          formats: {
+	            LT: '{h}:{mm} {A}',
+	            LTS: '{h}:{mm}:{ss} {A}',
+	            L: '{MM}/{DD}/{YYYY}',
+	            l: '{M}/{D}/{YYYY}',
+	            LL: '{MMMM} {D}, {YYYY}',
+	            ll: '{MMM} {D}, {YYYY}',
+	            LLL: '{MMMM} {D}, {YYYY} {h}:{mm} {A}',
+	            lll: '{MMM} {D}, {YYYY} {h}:{mm} {A}',
+	            LLLL: '{wwww}, {MMMM} {D}, {YYYY} {h}:{mm} {A}',
+	            llll: '{www}, {MMM} {D}, {YYYY} {h}:{mm} {A}'
+	          },
+
 	          relativeTime: {
 	            prefixAgo: null,
 	            prefixFromNow: null,
@@ -138,6 +151,12 @@ module.exports =
 	            }
 	          },
 
+	          meridiem: function(now, isLower) {
+	            var m = now.hours() > 11 ? 'PM' : 'AM'
+	            if (isLower) return m.toLowerCase();
+	            return m;
+	          },
+
 	          pluralizer: function(number) {
 	            return number == 1 ? 0 : 1;
 	          },
@@ -159,7 +178,7 @@ module.exports =
 	          weekdays: function(day, format, brief) {
 	            brief || (brief = false);
 	            var weekdays = {
-	              nominative: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satruday', 'Sunday'],
+	              nominative: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
 	              brief: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 	            };
 	            if (brief) {
@@ -280,10 +299,10 @@ module.exports =
 	          return pad(this.hours() % 12 || 12, 2);
 	        },
 	        a: function() {
-	          return this.hours() > 11 ? 'pm' : 'am';
+	          return this.lang().meridiem(this, true);
 	        },
 	        A: function() {
-	          return this.hours() > 11 ? 'PM' : 'AM';
+	          return this.lang().meridiem(this);
 	        },
 	        D: function() {
 	          return this.date();
@@ -354,7 +373,17 @@ module.exports =
 	          tz += Math.abs(offset) < 6000 ? '0' : '';
 	          tz = padRight(tz + Math.abs(offset/60), 5);
 	          return [tz.slice(0,3), ':', tz.slice(3)].join('');
-	        }
+	        },
+	        LT: function() { return this.format(this.lang().formats.LT); },
+	        LTS: function() { return this.format(this.lang().formats.LTS); },
+	        L: function() { return this.format(this.lang().formats.L); },
+	        l: function() { return this.format(this.lang().formats.l); },
+	        LL: function() { return this.format(this.lang().formats.LL); },
+	        ll: function() { return this.format(this.lang().formats.ll); },
+	        LLL: function() { return this.format(this.lang().formats.LLL); },
+	        lll: function() { return this.format(this.lang().formats.lll); },
+	        LLLL: function() { return this.format(this.lang().formats.LLLL); },
+	        llll: function() { return this.format(this.lang().formats.llll); },
 	      };
 
 	  function trim(string) {
@@ -585,6 +614,9 @@ module.exports =
 	  }
 
 	  function Cronus(input, format) {
+	    if (typeof this === 'undefined') {
+	      return new Cronus(input, format);
+	    }
 	    extend(this, defaults);
 	    this._d = parseDateInput(this, input, format);
 	  }
@@ -1114,6 +1146,19 @@ module.exports =
 	}(this, function(cronus) {
 	  'use strict';
 	  return cronus.lang('ru', {
+	    formats: {
+	      LT: '{HH}:{mm}',
+	      LTS: '{HH}:{mm}:{ss}',
+	      L: '{DD}.{MM}.{YYYY}',
+	      l: '{D}.{M}.{YYYY}',
+	      LL: '{D} {MMMM} {YYYY}',
+	      ll: '{D} {MMM}. {YYYY}',
+	      LLL: '{D} {MMMM} {YYYY}, {HH}:{mm}',
+	      lll: '{D} {MMM}. {YYYY}, {HH}:{mm}',
+	      LLLL: '{wwww}, {D} {MMMM} {YYYY}, {HH}:{mm}',
+	      llll: '{www}, {D} {MMM}. {YYYY}, {HH}:{mm}'
+	    },
+
 	    relativeTime: {
 	      prefixAgo: null,
 	      prefixFromNow: 'через',
@@ -1140,8 +1185,21 @@ module.exports =
 	      }
 	    },
 
+	    meridiem: function(now, isLower) {
+	      var hours = now.hours();
+	      if (hours < 4) {
+	        return 'ночи';
+	      } else if (hours < 12) {
+	        return 'утра';
+	      } else if (hours < 17) {
+	        return 'дня';
+	      } else {
+	        return 'вечера';
+	      }
+	    },
+
 	    pluralizer: function(number) {
-	      return ((number % 10 == 1) && (number % 100 != 11))
+	      return ((number % 10 === 1) && (number % 100 !== 11))
 	        ? 0
 	        : (((number % 10 >= 2) && (number % 10 <= 4) && ((number % 100 < 10) || (number % 100 >= 20))) ? 1 : 2);
 	    },
@@ -1171,20 +1229,20 @@ module.exports =
 	    },
 
 	    week: {
-	      weekStart: 1, // First day of the week. 0 - Sunday in USA. Set to 1 for Monday.
-	      yearStart: 4  // First thursday of the year indicates first week of the year.
+	      weekStart: 1,
+	      yearStart: 4
 	    },
 
 	    weekdays: function(day, format, brief) {
 	      var weekdays = {
-	        nominative: ['воскресенье' ,'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
-	        accusative: ['воскресенье', 'понедельник', 'вторник', 'среду', 'четверг', 'пятницу', 'субботу'],
+	        nominative: ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'],
+	        accusative: ['понедельник', 'вторник', 'среду', 'четверг', 'пятницу', 'субботу', 'воскресенье'],
 	        brief: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
 	      };
 	      if (brief) {
 	        return weekdays.brief[day];
 	      }
-	      nounCase = (/(прошлую|следующую)/).test(format) && (/{DDDD}/).test(format) ? 'accusative' : 'nominative';
+	      var nounCase = (/(прошлую|следующую)/).test(format) && (/{DDDD}/).test(format) ? 'accusative' : 'nominative';
 	      return weekdays[nounCase][day];
 	    },
 
@@ -1197,7 +1255,7 @@ module.exports =
 	      if (brief) {
 	        return months.brief[month];
 	      }
-	      nounCase = (/\{(D|DD)\} \{MMMM\}/).test(format) ? 'accusative' : 'nominative';
+	      var nounCase = (/\{(D|DD)\} \{MMMM\}/).test(format) ? 'accusative' : 'nominative';
 	      return months[nounCase][month];
 	    }
 	  });
