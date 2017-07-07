@@ -43,16 +43,9 @@ module.exports =
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	module.exports = __webpack_require__(1);
-
-
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	/**
 	 * Simple javascript Date manipulation, parsing and printing library.
 	 * version 0.5.4
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
@@ -60,8 +53,8 @@ module.exports =
 	 * Available under BSD-3-Clause license
 	 */
 	(function (root, factory) {
-	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  if (typeof define === 'function' && define.amd) {
+	    define([], factory);
 	  } else if (typeof exports === 'object') {
 	    module.exports = factory();
 	  } else {
@@ -1095,7 +1088,7 @@ module.exports =
 	      } else if (! languages[key] && ! language) {
 	        // Try to load new language wit
 	        try {
-	          __webpack_require__(2)("./" + key);
+	          require('../lang/' + key);
 	        } catch (err) { }
 	      } else {
 	        defaults._lang = key;
@@ -1106,159 +1099,6 @@ module.exports =
 	  });
 
 	  return Cronus;
-	}));
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var map = {
-		"./ru": 3,
-		"./ru.js": 3
-	};
-	function webpackContext(req) {
-		return __webpack_require__(webpackContextResolve(req));
-	};
-	function webpackContextResolve(req) {
-		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
-	};
-	webpackContext.keys = function webpackContextKeys() {
-		return Object.keys(map);
-	};
-	webpackContext.resolve = webpackContextResolve;
-	module.exports = webpackContext;
-	webpackContext.id = 2;
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
-	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [!(function webpackMissingModule() { var e = new Error("Cannot find module \"cronus\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	  } else if (typeof exports === 'object') {
-	    module.exports = factory(require('../index'));
-	  } else {
-	    root.returnExports = factory(root.cronus);
-	  }
-	}(this, function(cronus) {
-	  'use strict';
-	  return cronus.lang('ru', {
-	    formats: {
-	      LT: '{HH}:{mm}',
-	      LTS: '{HH}:{mm}:{ss}',
-	      L: '{DD}.{MM}.{YYYY}',
-	      l: '{D}.{M}.{YYYY}',
-	      LL: '{D} {MMMM} {YYYY}',
-	      ll: '{D} {MMM}. {YYYY}',
-	      LLL: '{D} {MMMM} {YYYY}, {HH}:{mm}',
-	      lll: '{D} {MMM}. {YYYY}, {HH}:{mm}',
-	      LLLL: '{wwww}, {D} {MMMM} {YYYY}, {HH}:{mm}',
-	      llll: '{www}, {D} {MMM}. {YYYY}, {HH}:{mm}'
-	    },
-
-	    relativeTime: {
-	      prefixAgo: null,
-	      prefixFromNow: 'через',
-	      suffixAgo: 'назад',
-	      suffixFromNow: '',
-	      seconds: '[только что]',
-	      minute: '{prefix} [минуту] {suffix}',
-	      minutes: '{prefix} {diff} [минуту|минуты|минут] {suffix}',
-	      hour: '{prefix} [час] {suffix}',
-	      hours: '{prefix} {diff} [час|часа|часов] {suffix}',
-	      day: '{prefix} [день] {suffix}',
-	      days: '{prefix} {diff} [день|дня|дней] {suffix}',
-	      month: '{prefix} [месяц] {suffix}',
-	      months: '{prefix} [месяц|месяцев|месяца] {diff}',
-	      year: '{prefix} [год] {suffix}',
-	      years: '{prefix} {diff} [год|года|лет] {suffix}',
-	      wordDelimiter: ' ',
-	      format: function(now, then) {
-	        if (now.year() === then.year()) {
-	          return '{D} {MMMM}';
-	        } else {
-	          return '{D} {MMMM} {YYYY}';
-	        }
-	      }
-	    },
-
-	    meridiem: function(now, isLower) {
-	      var hours = now.hours();
-	      if (hours < 4) {
-	        return 'ночи';
-	      } else if (hours < 12) {
-	        return 'утра';
-	      } else if (hours < 17) {
-	        return 'дня';
-	      } else {
-	        return 'вечера';
-	      }
-	    },
-
-	    pluralizer: function(number) {
-	      return ((number % 10 === 1) && (number % 100 !== 11))
-	        ? 0
-	        : (((number % 10 >= 2) && (number % 10 <= 4) && ((number % 100 < 10) || (number % 100 >= 20))) ? 1 : 2);
-	    },
-
-	    calendar: {
-	      sameElse: '{D} {MMMM} {YYYY}',
-	      sameDay: 'Сегодня',
-	      nextDay: 'Завтра',
-	      nextWeek: function(day) {
-	        return day === 2 ? 'Во {DDDD} в {H}:{m}' : 'В {DDDD} в {H}:{m}';
-	      },
-	      lastDay: 'Вчера',
-	      lastWeek: function(day) {
-	        switch (Math.abs(day)) {
-	          case 0:
-	            return 'В прошлое {DDDD}';
-	          case 1:
-	          case 2:
-	          case 4:
-	            return 'В прошлый {DDD}';
-	          case 3:
-	          case 5:
-	          case 6:
-	            return 'В прошлую {DDD}';
-	        }
-	      }
-	    },
-
-	    week: {
-	      weekStart: 1,
-	      yearStart: 4
-	    },
-
-	    weekdays: function(day, format, brief) {
-	      var weekdays = {
-	        nominative: ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'],
-	        accusative: ['понедельник', 'вторник', 'среду', 'четверг', 'пятницу', 'субботу', 'воскресенье'],
-	        brief: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
-	      };
-	      if (brief) {
-	        return weekdays.brief[day];
-	      }
-	      var nounCase = (/(прошлую|следующую)/).test(format) && (/{DDDD}/).test(format) ? 'accusative' : 'nominative';
-	      return weekdays[nounCase][day];
-	    },
-
-	    months: function(month, format, brief) {
-	      var months = {
-	        nominative: [null, 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
-	        accusative: [null, 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
-	        brief: [null, 'янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек']
-	      };
-	      if (brief) {
-	        return months.brief[month];
-	      }
-	      var nounCase = (/\{(D|DD)\} \{MMMM\}/).test(format) ? 'accusative' : 'nominative';
-	      return months[nounCase][month];
-	    }
-	  });
 	}));
 
 

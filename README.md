@@ -12,26 +12,26 @@ How to use
 ````js
 define('app', ['cronus'], function(cronus) {
 
-	// Creates new instance of cronus with date set to crrent moment.
-	var date = new cronus();
+  // Creates new instance of cronus with date set to crrent moment.
+  var date = new cronus();
 
-	// Parsing will create new instance with set date and time.
-	// In this case 12th of May, 2014 at current time (not at the beginning of the day).
-	var dateP = new cronus('2014-05-12 12:05:45');
+  // Parsing will create new instance with set date and time.
+  // In this case 12th of May, 2014 at current time (not at the beginning of the day).
+  var dateP = new cronus('2014-05-12 12:05:45');
 
-	// Add one day to the instance turning it into '2014-05-13 12:05:45'.
-	dateP.add(1, 'day');
+  // Add one day to the instance turning it into '2014-05-13 12:05:45'.
+  dateP.add(1, 'day');
 
-	// Subtract 2 days turning it into '2014-05-11 12:05:45'.
-	dateP.sub(2, 'day');
-	// OR
-	// dateP.sub(2, 'days');
-	// OR
-	// dateP.sub(2, 'd');
+  // Subtract 2 days turning it into '2014-05-11 12:05:45'.
+  dateP.sub(2, 'day');
+  // OR
+  // dateP.sub(2, 'days');
+  // OR
+  // dateP.sub(2, 'd');
 
-	// Set date to tomorrow - time will be set to the beginning of the day:
-	// turning it into '2014-05-12 00:00:00'.
-	dateP.tomorrow();
+  // Set date to tomorrow - time will be set to the beginning of the day:
+  // turning it into '2014-05-12 00:00:00'.
+  dateP.tomorrow();
 });
 ````
 
@@ -57,10 +57,10 @@ List of special symbols convertable with format:
 * `ss` seconds with leading zero
 * `m`  minutes
 * `mm` minutes with leading zero
-* `H` hours in AM/PM format
-* `HH` hours in AM/PM format with leading zero
-* `h` hours in 00-23 format
-* `hh` hours in 00-23 format with leading zero
+* `h` hours in AM/PM format
+* `hh` hours in AM/PM format with leading zero
+* `H` hours in 00-23 format
+* `HH` hours in 00-23 format with leading zero
 * `a` lower case form of meridiem (AM/PM)
 * `A` meridiem in upper case format
 * `D` day of month
@@ -147,27 +147,27 @@ var date2 = new cronus().sub(5, 'days');
 var diff = date1.diff(date2, 'all');
 // That will return following object:
 /**
-	{
-		// Object with rounded absolutely formatted numbers.
-		relative: {
-			S: 432000000, // Milliseconds
-			s: 432000,    // Seconds
-			m: 7200,      // Minutes
-			h: 120,       // Hours
-			d: 5,         // days
-			M: 0,         // Months
-			y: 0          // Years
-		},
-		// Strict difference be it posizive or negative numbers.
-		strict: {
-			S: 432000000,
-			s: 432000,
-			m: 7200,
-			h: 120,
-			d: 5,
-			M: 0.16666...,
-			y: 0.01369...
-		}
-	}
+  {
+    // Object with rounded absolutely formatted numbers.
+    relative: {
+      S: 432000000, // Milliseconds
+      s: 432000,    // Seconds
+      m: 7200,      // Minutes
+      h: 120,       // Hours
+      d: 5,         // days
+      M: 0,         // Months
+      y: 0          // Years
+    },
+    // Strict difference be it posizive or negative numbers.
+    strict: {
+      S: 432000000,
+      s: 432000,
+      m: 7200,
+      h: 120,
+      d: 5,
+      M: 0.16666...,
+      y: 0.01369...
+    }
+  }
 */
 ````

@@ -11,7 +11,8 @@ var targets = [
       library: 'Cronus'
     },
     plugins: [
-      new webpack.optimize.UglifyJsPlugin({minimize: true})
+      new webpack.optimize.UglifyJsPlugin({minimize: true}),
+      new webpack.IgnorePlugin(/^\.\/lang$/)
     ]
   },
   {
@@ -20,14 +21,18 @@ var targets = [
       path: __dirname + '/dist',
       filename: 'cronus.js',
       libraryTarget: 'commonjs2'
-    }
+    },
+    plugins: [
+      new webpack.IgnorePlugin(/^\.\/lang$/)
+    ]
   }
 ];
 
 var baseConfig = {
   debug: false,
-  entry: './index',
+  entry: './lib/cronus',
   module: {
+    noParse: [/cronus/],
     loaders: [
       {
         test: /\.js$/,
