@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Simple javascript Date manipulation, parsing and printing library.
-	 * version 0.5.5
+	 * version 0.5.6
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2017 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -417,7 +417,8 @@ module.exports =
 	    return output;
 	  }
 
-	  function resetTime(date) {
+	  function resetDate(date) {
+	    date.setDate(1);
 	    date.setHours(0);
 	    date.setMinutes(0);
 	    date.setSeconds(0);
@@ -558,8 +559,8 @@ module.exports =
 
 	    if (! map.format) return null;
 
-	    // Start with 00:00:00 time.
-	    resetTime(date);
+	    // Start with 1 day 00:00:00 time.
+	    resetDate(date);
 
 	    l = map.format.length;
 	    for (k; k < l; k++) {
